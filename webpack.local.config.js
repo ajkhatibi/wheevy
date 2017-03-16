@@ -33,7 +33,7 @@ module.exports = {
 	output: {
 		path: __dirname + '/build/',
 		filename: 'app.js',
-		publicPath: 'https://obscure-fortress-10094.herokuapp.com/'
+		publicPath: 'https://obscure-fortress-10094.herokuapp.com/build'
 	},
 
   // Necessary plugins for hot load
