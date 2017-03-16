@@ -23,7 +23,7 @@ module.exports = {
 
   // Set entry point to ./src/main and include necessary files for hot load
 	entry: [
-		'webpack-dev-server/client?https://obscure-fortress-10094.herokuapp.com/',
+		'webpack-dev-server/client?http://localhost:9090',
 		'webpack/hot/only-dev-server',
 		'./src/app'
 	],
@@ -33,7 +33,7 @@ module.exports = {
 	output: {
 		path: __dirname + '/build/',
 		filename: 'app.js',
-		publicPath: 'https://obscure-fortress-10094.herokuapp.com/build'
+		publicPath: 'http://localhost:9090/build/'
 	},
 
   // Necessary plugins for hot load

@@ -28,7 +28,7 @@ var LoginPage = React.createClass({
               <form role="form" onSubmit={this.handleLogin} className="ng-pristine ng-valid">
                 <div className="form-content">
                   <div className="form-group">
-                    <input type="text" value={this.state.value} name='loginID' onChange={this.setLoginID} className="form-control input-underline input-lg" placeholder="Email" />
+                    <input type="text" value={this.state.value} name='loginID' onChange={this.setLoginID} className="form-control input-underline input-lg" placeholder="Username" />
                   </div>
                   <div className="form-group">
                     <input type="password" value={this.state.value} name='password' onChange={this.setLoginPassword} className="form-control input-underline input-lg" placeholder="Password" />
