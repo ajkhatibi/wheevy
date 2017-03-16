@@ -89,23 +89,23 @@ app.post('/home', (req, res) => {
  * See: http://webpack.github.io/docs/webpack-dev-server.html
  *
  *************************************************************/
-
-if (!process.env.PRODUCTION) {
-	var webpack = require('webpack');
-	var WebpackDevServer = require('webpack-dev-server');
-	var config = require('./webpack.local.config');
-
-	new WebpackDevServer(webpack(config), {
-		publicPath: config.output.publicPath,
-		hot: true,
-		noInfo: true,
-		historyApiFallback: true
-	}).listen(9090, 'localhost', (err, result) => {
-		if (err) {
-			console.log(err);
-		}
-	});
-}
+// console.log(process.env.PRODUCTION);
+// if (!process.env.PRODUCTION) {
+// 	var webpack = require('webpack');
+// 	var WebpackDevServer = require('webpack-dev-server');
+// 	var config = require('./webpack.local.config');
+//
+// 	new WebpackDevServer(webpack(config), {
+// 		publicPath: config.output.publicPath,
+// 		hot: true,
+// 		noInfo: true,
+// 		historyApiFallback: true
+// 	}).listen(9090, 'localhost', (err, result) => {
+// 		if (err) {
+// 			console.log(err);
+// 		}
+// 	});
+// }
 
 
 /******************
