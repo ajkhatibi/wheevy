@@ -8,5 +8,5 @@ module.exports = {
 	// 		require('nProgress').done();
   //     cb(null, require('./Reports'));
   //   });
-  }
+  // }
 }
