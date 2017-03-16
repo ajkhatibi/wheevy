@@ -90,22 +90,22 @@ app.post('/home', (req, res) => {
  *
  *************************************************************/
 
-if (!process.env.PRODUCTION) {
-	var webpack = require('webpack');
-	var WebpackDevServer = require('webpack-dev-server');
-	var config = require('./webpack.local.config');
-
-	new WebpackDevServer(webpack(config), {
-		publicPath: config.output.publicPath,
-		hot: true,
-		noInfo: true,
-		historyApiFallback: true
-	}).listen(9090, 'localhost', (err, result) => {
-		if (err) {
-			console.log(err);
-		}
-	});
-}
+// if (!process.env.PRODUCTION) {
+// 	var webpack = require('webpack');
+// 	var WebpackDevServer = require('webpack-dev-server');
+// 	var config = require('./webpack.local.config');
+//
+// 	new WebpackDevServer(webpack(config), {
+// 		publicPath: config.output.publicPath,
+// 		hot: true,
+// 		noInfo: true,
+// 		historyApiFallback: true
+// 	}).listen(9090, 'localhost', (err, result) => {
+// 		if (err) {
+// 			console.log(err);
+// 		}
+// 	});
+// }
 
 
 /******************
