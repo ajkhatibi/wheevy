@@ -5,6 +5,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
  * This is the Webpack configuration file for production.
  */
 module.exports = {
+	devtool: 'source-map',
+
 	entry: './src/app',
 
 	output: {
