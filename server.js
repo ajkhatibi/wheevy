@@ -12,8 +12,8 @@ let db = mongoose.connection;
 //mongodb://localhost/wheevydb
 //below is the mongodb remote data base for the repo file that doesn't push
 // mongodb://heroku_tjswj88f:c1f0stlho2364lqan95qde7bhf@ds149998.mlab.com:49998/heroku_tjswj88f
-// mongoose.connect('mongodb://heroku_fdrmtxfh:g46dajvn4o8pb2taolvdck743o@ds131900.mlab.com:31900/heroku_fdrmtxfh');
-mongoose.connect('mongodb://localhost/wheevydb');
+mongoose.connect('mongodb://heroku_fdrmtxfh:g46dajvn4o8pb2taolvdck743o@ds131900.mlab.com:31900/heroku_fdrmtxfh');
+// mongoose.connect('mongodb://localhost/wheevydb');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   // we're connected!
