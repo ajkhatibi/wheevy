@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { createHashHistory, useBasename } from 'history';
 import { Router, browserHistory } from 'react-router';
 import "./common/styles/app.less";
-import NProgress from 'nProgress';
+import NProgress from 'nprogress';
 
 NProgress.configure({ showSpinner: false });
 
