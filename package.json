@@ -67,6 +67,7 @@
     "lazy": "^1.0.11",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
+    "moment": "^2.17.1",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
     "normalizr": "^1.1.0",

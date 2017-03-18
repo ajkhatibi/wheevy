@@ -6,7 +6,8 @@ var User = new Schema({
 	name: String,
 	username: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
-	created_at: Date
+	created_at: Date,
+	lastActivity: Date
 });
 
 User.plugin(passportLocalMongoose);

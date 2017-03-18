@@ -1,15 +1,36 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from "react-router";
 import {Panel, Table} from 'react-bootstrap';
+import $ from "axios";
+
 
 var Blank = React.createClass({
-  searchUsers: function(){
+  getInitialState: function() {
+    return {
+      activeUsers: []
+    };
+  },
+
+  componentDidMount: function() {
     $({
       method: 'get',
-      url: '/searchUsers'
+      url: '/users/active'
     }).then((response) => {
-      console.log(response);
-    })
+      console.log('number of user: ');
+      console.log(response.data.activeUsers.length);
+      this.setState({
+        activeUsers: response.data.activeUsers
+      });
+      // let listUsers = response.map((response) =>{
+      //   <td>{response.activeUsers.username}</td>
+      //   <td>{response.activeUsers.password}</td>
+      //   <td>{response.activeUsers.lastActivity}</td>
+      // });
+    });
+  },
+
+  activeUsers: function(){
+
   },
 
   render: function() {
@@ -18,18 +39,24 @@ var Blank = React.createClass({
 	<Table hover>
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Address</th>
+				<th>Username</th>
+				<th>Gender</th>
+				<th>Miles Away</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>John</td>
-				<td>john@gmail.com</td>
-				<td>London, UK</td>
-			</tr>
-
+        {
+          this.state.activeUsers &&
+          this.state.activeUsers.map((user, id) =>{
+            return (
+                <tr key={id}>
+                  <td>{user.username}</td>
+                  <td>{user.password}</td>
+                  <td>{user.lastActivity}</td>
+                </tr>
+            );
+          })
+        }
 		</tbody>
 	</Table>
 </Panel>
