@@ -66,7 +66,7 @@ var LoginPage = React.createClass({
       password: this.state.password
     }).then(function(user){
       console.log('user: ', user);
-      browserHistory.push('/homepage');
+      browserHistory.push('/dashboard');
     }).catch(function(error){
       console.log(error);
       console.log('there seems to be an error with the login', error)

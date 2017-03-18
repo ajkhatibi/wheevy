@@ -1,46 +1,33 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createHashHistory, useBasename } from 'history';
-import { Router, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import "./common/styles/app.less";
 import NProgress from 'nprogress';
 
+import Login from './components/pages/Login';
+import HomePage from './components/layouts/Dashboard';
+import Dashboard from './components/layouts/Dashboard';
+import Overview from './components/pages/dashboard/Overview/Overview';
+import Reports from './components/pages/dashboard/Reports/Reports';
+
 NProgress.configure({ showSpinner: false });
 
-const history = useBasename(createHashHistory)({
-   queryKey: false
-})
-
-const rootRoute = {
-  path: '/homepage',
-  component: require('./components/layouts/Base'),
-  indexRoute: {component: require('./components/layouts/Dashboard')},
-  childRoutes: [
-    {
-      component: require('./components/layouts/Dashboard'),
-      indexRoute: {component: require('./components/pages/dashboard/Overview')},
-      childRoutes: [
-        require('./components/pages/dashboard/Overview'),
-        require('./components/pages/dashboard/Reports')
-      ]
-    },
-    {
-      path: '/',
-      component: require('./components/pages/Login'),
-      childRoutes: [
-      ]
-    },
-    {
-      path: '/register',
-      component: require('./components/pages/Register'),
-      childRoutes: [
-      ]
-    }
-  ]
+const getRoutes = function() {
+  return (
+    <Router history={browserHistory}>
+      <Route path="/" component={Login} />
+      <Route path="/dashboard" component={HomePage}>
+        <IndexRoute component={Overview} />
+        <Route path="overview" components={Overview} />
+        <Route path="reports" components={Reports} />
+      </Route>
+    </Router>
+  );
 }
 
 render(
-  <Router history={browserHistory} routes={rootRoute} />,
+  getRoutes(),
   document.getElementById('app')
 )
 

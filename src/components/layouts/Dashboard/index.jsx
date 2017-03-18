@@ -47,7 +47,7 @@ var HomePage = React.createClass({
   },
 
   contextTypes: {
-    router: React.PropTypes.func
+    router: React.PropTypes.shape({})
   },
 
   render: function() {
