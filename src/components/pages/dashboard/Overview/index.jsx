@@ -1,4 +1,4 @@
-import NProgress from 'nProgress';
+import NProgress from 'nprogress';
 
 module.exports = {
   path: '/dashboard/overview',
