@@ -32,7 +32,7 @@ var Register = React.createClass({
                     <input type="text" value={this.state.value} name='name' onChange={this.setUsername} className="form-control input-underline input-lg" placeholder="Username" />
                   </div>
                   <div className="form-group">
-                    <input type="text" value={this.state.value} name='name' onChange={this.setUsername} className="form-control input-underline input-lg" placeholder="Gender" />
+                    <input type="text" value={this.state.value} name='name' onChange={this.setGender} className="form-control input-underline input-lg" placeholder="Gender" />
                   </div>
                   <div className="form-group">
                     <input type="text" value={this.state.value} name='email' onChange={this.setEmail} className="form-control input-underline input-lg" placeholder="Email" />
