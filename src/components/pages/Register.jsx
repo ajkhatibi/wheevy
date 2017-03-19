@@ -10,6 +10,7 @@ var Register = React.createClass({
   getInitialState: function(){
     return {
       username: '',
+      gender: '',
       email: '',
       password: '',
       isSubmitted: false
@@ -31,6 +32,9 @@ var Register = React.createClass({
                     <input type="text" value={this.state.value} name='name' onChange={this.setUsername} className="form-control input-underline input-lg" placeholder="Username" />
                   </div>
                   <div className="form-group">
+                    <input type="text" value={this.state.value} name='name' onChange={this.setUsername} className="form-control input-underline input-lg" placeholder="Gender" />
+                  </div>
+                  <div className="form-group">
                     <input type="text" value={this.state.value} name='email' onChange={this.setEmail} className="form-control input-underline input-lg" placeholder="Email" />
                   </div>
                   <div className="form-group">
@@ -47,7 +51,11 @@ var Register = React.createClass({
 
 
   },
-
+  setGender: function(e){
+    this.setState({
+      gender: e.target.value
+    })
+  },
   setEmail: function(e) {
     this.setState({
       email: e.target.value,
@@ -70,7 +78,8 @@ var Register = React.createClass({
     $.post('/users/register', {
       email: this.state.email,
       password: this.state.password,
-      username: this.state.username
+      username: this.state.username,
+      gender: this.state.gender
     }).then(function(data){
       console.log('this is working passport', data);
       browserHistory.push('/');
