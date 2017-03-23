@@ -1,8 +1,8 @@
 import React from "react";
 import Router, { Link, RouteHandler } from "react-router";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar} from "react-bootstrap";
+import image from "../../../common/images/flat-avatar.png";
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar, Modal, Dialog, Title, Button, Footer, Body} from "react-bootstrap";
 import $ from "axios";
 import classNames from "classnames";
 
@@ -67,7 +67,7 @@ var HomePage = React.createClass({
               <div className="col-sm-3 col-md-2 sidebar">
                 <div className="text-center">
                   <h2 className="brand">{this.state.username}<br /><small>Wheevy</small></h2>
-                  <img src={require("../../../common/images/flat-avatar.png")} className="user-avatar" />
+                  <img src={image} className="user-avatar" />
                   <br />
                   <Link to="/login" className="btn btn-white btn-outline btn-rounded btn-sm">Logout</Link>
                 </div>
@@ -78,12 +78,6 @@ var HomePage = React.createClass({
                   </li>
                   <li>
                     <Link to="/dashboard/reports">Chat</Link>
-                  </li>
-                  <li>
-                    <a href="/dashboard/sendmoney">Send Money</a>
-                  </li>
-                  <li>
-                    <a href="/dashboard/findfriends">Profile</a>
                   </li>
                   <li>
                     <a href="">Settings</a>

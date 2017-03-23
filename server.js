@@ -34,7 +34,7 @@ app.get('/users/active', function(req, res) {
         $gte: moment().subtract(5, 'minutes').format(),
         $lt: moment().format()
     }
-	}
+	};
 	User.find(query, function(err, users) {
 		if (err) {
 			return res.status(500).end();

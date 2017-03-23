@@ -30,9 +30,12 @@ passport.use(new LocalStrategy({
 
 module.exports = function(app){
   app.post('/users/register', function(req, res) {
-      Users.create(new Users({ username : req.body.username, password: req.body.password, gender: req.body.gender, email: req.body.email }) , function(err, account) {
+      console.log(req.body.location)
+      Users.create(new Users({ username : req.body.username, password: req.body.password, gender: req.body.gender, email: req.body.email, location: req.body.location}) , function(err, account) {
           if (err) {
+              console.log(err)
               return res.status(500).json({});
+
           }
 
           passport.authenticate('local')(req, res, function() {

@@ -35,7 +35,7 @@ var Blank = React.createClass({
 
   render: function() {
     return (
-      <Panel header={<span>Who's Nearby?</span>} bsStyle="success" >
+      <Panel header={<span>Who's Nearby?</span>} bsStyle="primary" >
 	<Table hover>
 		<thead>
 			<tr>
