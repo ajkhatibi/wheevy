@@ -12,20 +12,18 @@ var Blank = React.createClass({
   },
 
   componentDidMount: function() {
+
     $({
       method: 'get',
       url: '/users/active'
     }).then((response) => {
-      console.log('number of user: ');
+      console.log('number of user: ', response);
       console.log(response.data.activeUsers.length);
       this.setState({
         activeUsers: response.data.activeUsers
       });
-      // let listUsers = response.map((response) =>{
-      //   <td>{response.activeUsers.username}</td>
-      //   <td>{response.activeUsers.password}</td>
-      //   <td>{response.activeUsers.lastActivity}</td>
-      // });
+    }).catch((error) => {
+      console.log(error)
     });
   },
 
@@ -40,7 +38,7 @@ var Blank = React.createClass({
 		<thead>
 			<tr>
 				<th>Username</th>
-				<th>Gender</th>
+				{/* <th>Gender</th> */}
 				<th>Miles Away</th>
 			</tr>
 		</thead>
@@ -51,8 +49,8 @@ var Blank = React.createClass({
             return (
                 <tr key={id}>
                   <td>{user.username}</td>
-                  <td>{user.gender}</td>
-                  <td>{user.lastActivity}</td>
+                  {/* <td>{user.gender}</td> */}
+                  <td>{user.location}</td>
                 </tr>
             );
           })

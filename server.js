@@ -18,33 +18,15 @@ let db = mongoose.connection;
 mongoose.connect('mongodb://localhost/wheevydb');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  // we're connected!
-	console.log('ayyy Buddy connected to wheevydb');
+    // we're connected!
+    console.log('ayyy Buddy connected to wheevydb');
 });
 
 ///cookie-parser middleware
 app.use(cookieParser())
 ///body-parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.get('/users/active', function(req, res) {
-	const query = {
-		lastActivity: {
-        $gte: moment().subtract(5, 'minutes').format(),
-        $lt: moment().format()
-    }
-	};
-	User.find(query, function(err, users) {
-		if (err) {
-			return res.status(500).end();
-		}
-		return res.status(200).json({ activeUsers: users });
-	});
-});
-
-///requring searchUsers_routes.js
-require('./server/searchUser_route.js')(app);
+app.use(bodyParser.urlencoded({extended: false}));
 
 // passport config
 var Users = require('./models/Users');
@@ -53,70 +35,97 @@ passport.serializeUser(Users.serializeUser());
 passport.deserializeUser(Users.deserializeUser());
 
 //configure for passpoort from previous attempt
-app.use(require('express-session')({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: false
-}));
+app.use(require('express-session')({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function(req, res, next) {
-	if (!req.user) {
-		return next();
-	}
+    if (!req.user) {
+        return next();
+    }
 
-	User.findByIdAndUpdate(req.user._id, { lastActivity: Date.now() }, { new: true }, function(err, user) {
-		if (err) {
-			return res.status(500).end();
-		}
+    User.findByIdAndUpdate(req.user._id, {
+        lastActivity: Date.now()
+    }, {
+        new: true
+    }, function(err, user) {
+        if (err) {
+            return res.status(500).end();
+        }
 
-		if (!user) {
-			return res.status(404).end();
-		}
+        if (!user) {
+            return res.status(404).end();
+        }
 
-		return next();
-	});
+        return next();
+    });
 });
+
+app.get('/users/active', function(req, res) {
+    console.log(req.user.location, 'checking console.log dir');
+    const query = {
+        $and: [
+            {
+                lastActivity: {
+                    $gte: moment().subtract(5, 'minutes').format()
+                }
+            }, {
+                location: {
+                    $near: {
+                        type: 'point',
+                        coordinates: req.user.location
+                    },
+                    $maxDistance: 1600
+                }
+            }
+        ]
+    };
+
+    User.find(query, function(err, users) {
+        if (err) {
+            return res.status(500).end();
+        }
+        console.log(users);
+        return res.status(200).json({activeUsers: users});
+    });
+});
+
+///requring searchUsers_routes.js
+require('./server/searchUser_route.js')(app);
 
 require('./server/passport_route.js')(app);
 // Serve application file depending on environment
 app.get('/app.js', (req, res) => {
-	if (process.env.PRODUCTION) {
-		res.sendFile(__dirname + '/build/app.js');
-	} else {
-		res.redirect('//localhost:9090/build/app.js');
-	}
+    if (process.env.PRODUCTION) {
+        res.sendFile(__dirname + '/build/app.js');
+    } else {
+        res.redirect('//localhost:9090/build/app.js');
+    }
 });
 
 // Serve aggregate stylesheet depending on environment
 app.get('/style.css', (req, res) => {
-	if (process.env.PRODUCTION) {
-		res.sendFile(__dirname + '/build/style.css');
-	} else {
-		res.redirect('//localhost:9090/build/style.css');
-	}
+    if (process.env.PRODUCTION) {
+        res.sendFile(__dirname + '/build/style.css');
+    } else {
+        res.redirect('//localhost:9090/build/style.css');
+    }
 });
 
 app.use(express.static(__dirname + '/build'));
 
 // Serve index page
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/build/index.html');
+    res.sendFile(__dirname + '/build/index.html');
 });
 
 app.post('/landing', (req, res) => {
-	res.json({
-		title: 'Landing Page'
-	});
+    res.json({title: 'Landing Page'});
 });
 
 app.post('/home', (req, res) => {
-	res.json({
-		title: 'Home Page'
-	});
+    res.json({title: 'Home Page'});
 });
-
 
 /*************************************************************
  *
@@ -127,22 +136,21 @@ app.post('/home', (req, res) => {
  *************************************************************/
 // console.log(process.env.PRODUCTION);
 if (!process.env.PRODUCTION) {
-	var webpack = require('webpack');
-	var WebpackDevServer = require('webpack-dev-server');
-	var config = require('./webpack.local.config');
+    var webpack = require('webpack');
+    var WebpackDevServer = require('webpack-dev-server');
+    var config = require('./webpack.local.config');
 
-	new WebpackDevServer(webpack(config), {
-		publicPath: config.output.publicPath,
-		hot: true,
-		noInfo: true,
-		historyApiFallback: true
-	}).listen(9090, 'localhost', (err, result) => {
-		if (err) {
-			console.log(err);
-		}
-	});
+    new WebpackDevServer(webpack(config), {
+        publicPath: config.output.publicPath,
+        hot: true,
+        noInfo: true,
+        historyApiFallback: true
+    }).listen(9090, 'localhost', (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
-
 
 /******************
  *
@@ -152,8 +160,8 @@ if (!process.env.PRODUCTION) {
 
 var port = process.env.PORT || 8080;
 var server = app.listen(port, () => {
-	var host = server.address().address;
-	port = server.address().port;
+    var host = server.address().address;
+    port = server.address().port;
 
-	console.log('Essential React listening at http://%s:%s', host, port);
+    console.log('Essential React listening at http://%s:%s', host, port);
 });

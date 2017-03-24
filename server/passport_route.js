@@ -54,7 +54,7 @@ module.exports = function(app){
   });
 
   app.get('/getuser', function (req, res) {
-      console.log(req.user)
+      console.log(req.user, "get user is being called")
       res.json({username: req.user.username})
   });
 

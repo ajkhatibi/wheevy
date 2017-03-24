@@ -10,7 +10,14 @@ var User = new Schema({
 	password: { type: String, required: true },
 	created_at: Date,
 	lastActivity: Date,
-	location: { type: [Number], index: { type: '2dsphere', sparse: true}}
+	location: {
+		coordinates: {
+			type: [Number],
+			index: {
+				type: '2dsphere',
+				sparse: true}
+			}
+		}
 });
 
 User.plugin(passportLocalMongoose);
