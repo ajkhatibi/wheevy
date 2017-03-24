@@ -16,14 +16,17 @@ var User = new Schema({
 			default: 'Point'
 		},
 		coordinates: {
-			type: [],
-			index: {
-				type: '2dsphere',
-				sparse: true
-			}
+			type: []
 		}
 	}
 });
+
+// User.insure({location:"2dsphere"})
+
+// index: {
+// 	type: '2dsphere',
+// 	sparse: true
+// }
 
 User.plugin(passportLocalMongoose);
 
