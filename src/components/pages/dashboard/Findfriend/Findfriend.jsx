@@ -38,7 +38,7 @@ var Blank = React.createClass({
 		<thead>
 			<tr>
 				<th>Username</th>
-				{/* <th>Gender</th> */}
+				<th>Gender</th>
 				<th>Miles Away</th>
 			</tr>
 		</thead>
@@ -49,7 +49,7 @@ var Blank = React.createClass({
             return (
                 <tr key={id}>
                   <td>{user.username}</td>
-                  {/* <td>{user.gender}</td> */}
+                  <td>{user.gender}</td>
                   <td>{user.location}</td>
                 </tr>
             );
