@@ -73,7 +73,7 @@ app.get('/users/active', function(req, res) {
                 location: {
                     $near: {
 											$geometry: {
-												type: 'point',
+												type: 'Point',
 												coordinates: req.user.location
 											}
                     },

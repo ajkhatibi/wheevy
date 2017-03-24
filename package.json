@@ -2,6 +2,9 @@
   "name": "essential-react",
   "version": "0.3.0",
   "description": "A minimal skeleton for building testable React apps using ES6.",
+  "engines": {
+    "node": "6.5.0"
+  },
   "main": "src/main.jsx",
   "scripts": {
     "postinstall": "npm run build",
