@@ -15,9 +15,10 @@ var User = new Schema({
 			type: [Number],
 			index: {
 				type: '2dsphere',
-				sparse: true}
+				sparse: true
 			}
 		}
+	}
 });
 
 User.plugin(passportLocalMongoose);
