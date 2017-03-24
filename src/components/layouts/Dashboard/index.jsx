@@ -69,7 +69,7 @@ var HomePage = React.createClass({
                   <h2 className="brand">{this.state.username}<br /><small>Wheevy</small></h2>
                   <img src={image} className="user-avatar" />
                   <br />
-                  <Link to="/login" className="btn btn-white btn-outline btn-rounded btn-sm">Logout</Link>
+                  <Link to="/" className="btn btn-white btn-outline btn-rounded btn-sm">Logout</Link>
                 </div>
 
                 <ul className="nav nav-sidebar">
