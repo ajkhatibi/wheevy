@@ -72,7 +72,10 @@ app.get('/users/active', function(req, res) {
             }, {
                 location: {
                     $near: {
-                        coordinates: req.user.location
+											$geometry: {
+												type: 'point',
+												coordinates: req.user.location
+											}
                     },
                     $maxDistance: 1600
                 }
