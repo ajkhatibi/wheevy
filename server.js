@@ -83,6 +83,7 @@ app.get('/users/active', function(req, res) {
 
     User.find(query, function(err, users) {
         if (err) {
+					console.log(err);
             return res.status(500).end();
         }
         console.log(users);
