@@ -50,7 +50,7 @@ var Blank = React.createClass({
                 <tr key={id}>
                   <td>{user.username}</td>
                   <td>{user.gender}</td>
-                  <td>{user.location}</td>
+                  <td>{user.location.coordinates}</td>
                 </tr>
             );
           })

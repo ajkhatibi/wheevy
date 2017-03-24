@@ -11,8 +11,12 @@ var User = new Schema({
 	created_at: Date,
 	lastActivity: Date,
 	location: {
+		type: {
+			type: String,
+			default: 'Point'
+		},
 		coordinates: {
-			type: [Number],
+			type: [],
 			index: {
 				type: '2dsphere',
 				sparse: true

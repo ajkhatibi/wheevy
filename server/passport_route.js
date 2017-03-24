@@ -31,7 +31,7 @@ passport.use(new LocalStrategy({
 module.exports = function(app){
   app.post('/users/register', function(req, res) {
       console.log(req.body.location)
-      Users.create(new Users({ username : req.body.username, password: req.body.password, gender: req.body.gender, email: req.body.email, location: {coordinates: req.body.location}}) , function(err, account) {
+      Users.create(new Users({ username : req.body.username, password: req.body.password, gender: req.body.gender, email: req.body.email, location: {type: 'Point', coordinates: req.body.location}}) , function(err, account) {
           if (err) {
               console.log(err)
               return res.status(500).json({});
