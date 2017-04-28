@@ -12,7 +12,6 @@ var Blank = React.createClass({
   },
 
   componentDidMount: function() {
-
     $({
       method: 'get',
       url: '/users/active'
@@ -27,9 +26,9 @@ var Blank = React.createClass({
     });
   },
 
-  activeUsers: function(){
-
-  },
+  // handleClick: function(){
+    // browserHistory.push('/dashboard/reports')
+  // },
 
   render: function() {
     return (

@@ -83,6 +83,7 @@
     "react-addons-css-transition-group": "^0.14.1",
     "react-addons-transition-group": "^0.14.2",
     "react-bootstrap": "^0.27.3",
+    "react-chat-ui": "0.0.26",
     "react-dom": "^0.14.1",
     "react-geolocated": "^1.0.1",
     "react-router": "^2.4.0",

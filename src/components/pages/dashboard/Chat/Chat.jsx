@@ -1,72 +1,54 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from "react-router";
-import {Jumbotron,  } from 'react-bootstrap';
-import * as firebase from 'firebase';
+import { Jumbotron, Button, Row, Grid, Col, InputGroup, FormGroup} from 'react-bootstrap';
+import ReactDOM from 'react-dom'
+import './Chat.less';
 
-// Initialize Firebase
- var config = {
-   apiKey: "AIzaSyBISfTKByygQKiaPfHCeH6ntXiuEI8h1sE",
-   authDomain: "wheevy-dc03f.firebaseapp.com",
-   databaseURL: "https://wheevy-dc03f.firebaseio.com",
-   storageBucket: "wheevy-dc03f.appspot.com",
-   messagingSenderId: "41716734772"
- };
-
- firebase.initializeApp(config);
 
 var Buttons = React.createClass({
-  getInitialState: function () {
-  return { users: [] };
-},
-// componentDidMount: function () {
-//   this.chatProxy = this.props.chatProxy;
-//   this.chatProxy.connect(this.props.username);
-//   this.chatProxy.onMessage(this.addMessage.bind(this));
-//   this.chatProxy.onUserConnected(this.userConnected.bind(this));
-//   this.chatProxy.onUserDisconnected(this.userDisconnected.bind(this));
-// },
-//
-// addMessage: function (message) {
-//   if (message) {
-//     message.date = new Date();
-//     this.refs.messagesList.addMessage(message);
-//   }
-// },
-// messageHandler: function (message) {
-// message = this.refs.messageInput.getDOMNode().value;
-// this.addMessage({
-//   content: message,
-//   author : this.chatProxy.getUsername()
-// });
-// this.chatProxy.broadcast(message);
-// },
-
 
   render: function() {
     return (
-      // <div className="chat-box" ref="root">
-      //   <div className="chat-header ui-widget-header">React p2p Chat</div>
-      //   <div className="chat-content-wrapper row">
-      //     <MessagesList ref="messagesList"></MessagesList>
-      //     <UsersList users={this.state.users} ref="usersList"></UsersList>
-      //   </div>
-      //   <MessageInput
-      //     ref="messageInput"
-      //     messageHandler={this.messageHandler}>
-      //   </MessageInput>
-      // </div>
-
-      <div key="reports" className="reports-page">
-  <div className="ng-scope">
-    <Link to="/dashboard/overview" className="pull-right btn btn-primary btn-outline btn-rounded">Back to Overview</Link>
-    <h2>Reports <small>Work with Chart.js and D3</small></h2>
-
-    <i className="glyphicon glyphicon-dashboard bg-fade"></i>
-    <Jumbotron>
-      <h1>Add Charts here</h1>
-      <p>You can use C3.js or Chart.js</p>
-      <p> <a className="btn btn-primary btn-lg btn-outline btn-rounded">Learn more</a> </p>
-    </Jumbotron>
+      <div className="ui">
+  <div className="left-menu">
+    <form action="#" className="search">
+      <input placeholder="search..." type="search" name id />
+      <input type="submit" defaultValue="" />
+    </form>
+  </div>
+  <div className="chat">
+    <div className="top">
+      <div className="avatar">
+        <img width={50} height={50} src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg" />
+      </div>
+      <div className="info">
+        <div className="name">Юния Гапонович</div>
+        <div className="count">already 1 902 messages</div>
+      </div>
+      <i className="fa fa-star" />
+    </div>
+    <ul className="messages">
+      <li className="i">
+        <div className="head">
+          <span className="time">10:13 AM, Today</span>
+          <span className="name">Буль</span>
+        </div>
+        <div className="message">Привет!</div>
+      </li>
+      <li className="friend-with-a-SVAGina">
+        <div className="head">
+          <span className="name">Юния</span>
+          <span className="time">10:15 AM, Today</span>
+        </div>
+        <div className="message">чего тебе?</div>
+      </li>
+    </ul>
+    <div className="write-form">
+      <textarea placeholder="Type your message" name="e" id="texxt" rows={2} defaultValue={""} />
+      <i className="fa fa-picture-o" />
+      <i className="fa fa-file-o" />
+      <span className="send">Send</span>
+    </div>
   </div>
 </div>
 
@@ -75,5 +57,6 @@ var Buttons = React.createClass({
 
 
 });
+
 
 export default Buttons;
