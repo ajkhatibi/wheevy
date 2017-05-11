@@ -11,6 +11,7 @@ import Dashboard from './components/layouts/Dashboard';
 import Findfriend from './components/pages/dashboard/Findfriend/Findfriend';
 import Chat from './components/pages/dashboard/Chat/Chat';
 import Register from './components/pages/Register';
+import Settings from './components/pages/dashboard/Setting/Setting';
 
 NProgress.configure({ showSpinner: false });
 
@@ -23,12 +24,15 @@ const getRoutes = function() {
         <IndexRoute component={Findfriend} />
         <Route path="overview" components={Findfriend} />
         <Route path="reports" components={Chat} />
+        <Route path="settings" components={Settings} />
       </Route>
     </Router>
   );
 }
 
+let target =   document.getElementById('app')
+
 render(
   getRoutes(),
-  document.getElementById('app')
+  target
 )

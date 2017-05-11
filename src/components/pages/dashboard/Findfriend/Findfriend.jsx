@@ -26,6 +26,7 @@ var Blank = React.createClass({
     });
   },
 
+
   // handleClick: function(){
     // browserHistory.push('/dashboard/reports')
   // },

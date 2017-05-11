@@ -80,7 +80,7 @@ var HomePage = React.createClass({
                     <Link to="/dashboard/reports">Chat</Link>
                   </li>
                   <li>
-                    <a href="">Settings</a>
+                    <Link to="/dashboard/settings">Settings</Link>
                   </li>
                 </ul>
               </div>

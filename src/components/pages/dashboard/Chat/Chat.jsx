@@ -1,11 +1,35 @@
 import React, { PropTypes, Component } from 'react';
-import { Link } from "react-router";
-import { Jumbotron, Button, Row, Grid, Col, InputGroup, FormGroup} from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 import './Chat.less';
+import $ from "axios";
 
 
 var Buttons = React.createClass({
+
+  getInitialState: function() {
+    return {
+      activeUsers: []
+    };
+  },
+
+  componentDidMount: function() {
+    $({
+      method: 'get',
+      url: '/users/active'
+    }).then((response) => {
+      console.log('number of user: ', response);
+      console.log(response.data.activeUsers.length);
+      this.setState({
+        activeUsers: response.data.activeUsers
+      });
+    }).catch((error) => {
+      console.log(error)
+    });
+  },
+
+  userClick: function(){
+    console.log('hi')
+  },
 
   render: function() {
     return (
@@ -15,6 +39,20 @@ var Buttons = React.createClass({
       <input placeholder="search..." type="search" name id />
       <input type="submit" defaultValue="" />
     </form>
+    <menu className="list-friends">
+      {
+        this.state.activeUsers.map((user, id) =>{
+          return(
+            <li  key={id}>
+              <div className="info">
+                <div className="user">{user.username}</div>
+                <div className="status on"> online</div>
+              </div>
+            </li>
+          )
+        })
+      }
+    </menu>
   </div>
   <div className="chat">
     <div className="top">
