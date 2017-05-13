@@ -27,8 +27,8 @@ var Buttons = React.createClass({
     });
   },
 
-  userClick: function(){
-    console.log('hi')
+  clickToChat: function(user, e){
+    console.log('hi this click is working', user.username);
   },
 
   render: function() {
@@ -42,12 +42,14 @@ var Buttons = React.createClass({
     <menu className="list-friends">
       {
         this.state.activeUsers.map((user, id) =>{
+          let boundUserClick = this.clickToChat.bind(this, user)
           return(
             <li  key={id}>
-              <div className="info">
-                <div className="user">{user.username}</div>
+              <img width={50} height={50} src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg" />
+              <a className="info" role='button'>
+                <div className="user" onClick={boundUserClick}>{user.username}</div>
                 <div className="status on"> online</div>
-              </div>
+              </a>
             </li>
           )
         })
