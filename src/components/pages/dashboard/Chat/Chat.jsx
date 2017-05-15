@@ -8,7 +8,8 @@ var Buttons = React.createClass({
 
   getInitialState: function() {
     return {
-      activeUsers: []
+      activeUsers: [],
+      userClick: 'hi'
     };
   },
 
@@ -29,6 +30,10 @@ var Buttons = React.createClass({
 
   clickToChat: function(user, e){
     console.log('hi this click is working', user.username);
+    this.setState({
+      userClick: user.username
+    })
+
   },
 
   render: function() {
@@ -59,11 +64,9 @@ var Buttons = React.createClass({
   <div className="chat">
     <div className="top">
       <div className="avatar">
-        <img width={50} height={50} src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg" />
       </div>
       <div className="info">
-        <div className="name">Юния Гапонович</div>
-        <div className="count">already 1 902 messages</div>
+        <div className="name">{this.state.userClick}</div>
       </div>
       <i className="fa fa-star" />
     </div>
