@@ -5,10 +5,8 @@ let passport = require('passport');
 let cookieParser = require('cookie-parser');
 let User = require('./models/Users');
 let moment = require('moment');
-
 let bodyParser = require('body-parser');
 let app = express();
-
 
 // Initializing MongoDB with Mongoose
 let db = mongoose.connection;
@@ -26,6 +24,8 @@ db.once('open', () => {
     // we're connected!
     console.log('ayyy Buddy connected to wheevydb');
 });
+////firebase connection to wheevy
+
 
 ///cookie-parser middleware
 app.use(cookieParser())

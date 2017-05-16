@@ -2,6 +2,16 @@ import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom'
 import './Chat.less';
 import $ from "axios";
+let firebase = require('firebase');
+var config = {
+  apiKey: "AIzaSyBISfTKByygQKiaPfHCeH6ntXiuEI8h1sE",
+  authDomain: "wheevy-dc03f.firebaseapp.com",
+  databaseURL: "https://wheevy-dc03f.firebaseio.com",
+  projectId: "wheevy-dc03f",
+  storageBucket: "wheevy-dc03f.appspot.com",
+  messagingSenderId: "41716734772"
+};
+firebase.initializeApp(config);
 
 
 var Buttons = React.createClass({
@@ -9,11 +19,14 @@ var Buttons = React.createClass({
   getInitialState: function() {
     return {
       activeUsers: [],
-      userClick: 'hi'
+      userClick: '',
+      message: ''
     };
   },
 
   componentDidMount: function() {
+
+    ///api call to database for list of online users
     $({
       method: 'get',
       url: '/users/active'
@@ -26,6 +39,7 @@ var Buttons = React.createClass({
     }).catch((error) => {
       console.log(error)
     });
+
   },
 
   clickToChat: function(user, e){
@@ -33,7 +47,19 @@ var Buttons = React.createClass({
     this.setState({
       userClick: user.username
     })
+  },
 
+  textMessage: function(e){
+    this.setState({
+      message: e.target.value
+    })
+  },
+  sendMessage: function(){
+    console.log(firebase);
+    console.log(this.state.message);
+    let firebaseRef = firebase.database().ref();
+    let messageText = this.state.message;
+    firebaseRef.child('text').set(messageText);
   },
 
   render: function() {
@@ -50,7 +76,6 @@ var Buttons = React.createClass({
           let boundUserClick = this.clickToChat.bind(this, user)
           return(
             <li  key={id}>
-              <img width={50} height={50} src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg" />
               <a className="info" role='button'>
                 <div className="user" onClick={boundUserClick}>{user.username}</div>
                 <div className="status on"> online</div>
@@ -87,10 +112,10 @@ var Buttons = React.createClass({
       </li>
     </ul>
     <div className="write-form">
-      <textarea placeholder="Type your message" name="e" id="texxt" rows={2} defaultValue={""} />
+      <textarea placeholder="Type your message" value={this.state.value} onChange={this.textMessage} name="e" id="texxt" rows={2} defaultValue={""} />
       <i className="fa fa-picture-o" />
       <i className="fa fa-file-o" />
-      <span className="send">Send</span>
+      <span className="send" onClick={this.sendMessage}>Send</span>
     </div>
   </div>
 </div>
