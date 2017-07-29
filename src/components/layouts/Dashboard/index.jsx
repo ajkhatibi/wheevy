@@ -2,7 +2,6 @@ import React from "react";
 import Router, { Link, RouteHandler } from "react-router";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import image from "../../../common/images/flat-avatar.png";
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, ProgressBar, Modal, Dialog, Title, Button, Footer, Body} from "react-bootstrap";
 import $ from "axios";
 import classNames from "classnames";
 
@@ -18,32 +17,18 @@ var HomePage = React.createClass({
       this.setState({
         username: response.data.username
       })
-
     });
-
-    // this.setState({Height: $(window).height()});
-  },
-
-  componentDidMount: function() {
-
-  },
-
-  componentWillUnmount: function(){
-    // $(window).unbind('resize',this.adjustResize);
-
   },
 
   getInitialState: function(){
-
     return {
-      username: 'loading',
+      username: '',
       uiElementsCollapsed: true,
       chartsElementsCollapsed: true,
       multiLevelDropdownCollapsed: true,
       thirdLevelDropdownCollapsed: true,
       samplePagesCollapsed: true
     };
-
   },
 
   contextTypes: {
@@ -51,10 +36,6 @@ var HomePage = React.createClass({
   },
 
   render: function() {
-
-    //console.log(this.context);
-
-    // var name = this.context.router.getCurrentPath();
 
     const { pathname } = this.props.location;
 
